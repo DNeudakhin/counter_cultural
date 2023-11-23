@@ -5,9 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SocialMedia extends Model
+class SocialMedias extends Model
 {
     use HasFactory;
+
+    public $timestamps = false;
 
     const ENUM = [
         'instagram', 'telegram',

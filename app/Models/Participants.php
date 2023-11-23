@@ -7,22 +7,30 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Participant extends Model
+class Participants extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
     public function socialMedias(): HasMany
     {
-        return $this->hasMany(SocialMedia::class);
+        return $this->hasMany(SocialMedias::class);
     }
 
     public function events(): BelongsToMany
     {
-        return $this->belongsToMany(Event::class);
+        return $this->belongsToMany(
+            Events::class,
+            'participants_events'
+        );
     }
 
     public function genres(): BelongsToMany
     {
-        return $this->belongsToMany(Genre::class);
+        return $this->belongsToMany(
+            Genres::class,
+            'participants_genres'
+        );
     }
 }
