@@ -17,7 +17,6 @@ return new class extends Migration
                 ->unique();
             $table->string('full_name', 100)
                 ->nullable();
-            $table->string('genre', 100);
             $table->string('info', 1000)
                 ->nullable();
             $table->boolean('is_resident')

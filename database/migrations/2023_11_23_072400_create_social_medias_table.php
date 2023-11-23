@@ -3,8 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use App\Models\Participant;
-use App\Models\SocialMedia;
+use App\Models\Participants;
+use App\Models\SocialMedias;
 
 return new class extends Migration
 {
@@ -17,10 +17,16 @@ return new class extends Migration
             $table->id();
             $table->enum(
                 'name',
-                SocialMedia::ENUM
+                SocialMedias::ENUM
             );
             $table->string('url', 255);
-            $table->foreignIdFor(Participant::class);
+            $table->foreignIdFor(Participants::class);
+
+            $table->unique(['name', 'participants_id']);
+            $table->foreign('participants_id')
+                ->on('participants')
+                ->references('id')
+                ->cascadeOnDelete();
         });
     }
 
